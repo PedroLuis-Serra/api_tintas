@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tintas</title>
+</head>
+<body>
+
+    <input type="text" placeholder= "Marca" id="marca">
+    <input type="text" placeholder="Cor" id="cor">
+    <input type="text" placeholder="Tipo" id="tipo">
+    <button onclick="criarTinta()">Criar Tintas</button>
+
+    <p id="tintas"></p>
+
+    <script>
+        async function pegarTintas() {
+            const resposta = await fetch('http://localhost:3333/tintas',{
+                method: 'GET'
+            })
+            const tintas = await resposta.json();
+            console.log(tintas);
+            
+            const elementoP = document.getElementById('tintas');
+            elementoP.innerHTML = tintas[1].marca;
+            
+        }
+        pegarTintas();
+
+        async function criarTinta() {
+            const marca = document.getElementById('marca').value;
+            const cor = document.getElementById('cor').value;
+            const tipo = document.getElementById('tipo').value;
+
+            const novaTinta = {
+                "marca": marca,
+                "cor": cor,
+                "tipo": tipo
+            };
+            const resposta = await fetch('http://localhost:3333/tintas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(novaTinta)
+            });
+        }
+</script>
+</body>
+</html>

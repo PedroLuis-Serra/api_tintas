@@ -1,0 +1,30 @@
+
+###
+
+GET http://localhost:3333/tintas
+
+###
+
+POST http://localhost:3333/tintas
+Content-Type: application/json
+
+{
+    "marca": "Pintadoras",
+    "cor": "Salmão",
+    "tipo": "Acrílica"
+}
+
+###
+
+PUT http://localhost:3333/tintas/
+Content-Type: application/json
+
+{
+    "marca": "",
+    "cor": "",
+    "tipo": ""
+}
+
+###
+
+DELETE http://localhost:3333/tintas/
